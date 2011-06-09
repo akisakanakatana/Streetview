@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Google Maps with Canvas</title>
+    <script type="text/javascript" src="http://xaxxi.net/js/jquery.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="streetview.js"></script>
+
+    <style type="text/css">
+      * { padding: 0px; margin: 0px; }
+      #map_canvas {
+      margin: 10px 0px 0px 5px;
+      width: 1024px;
+      height: 256px;
+      }
+      #pano {
+      margin: 5px 0px 0px 5px;
+      width: 1024px;
+      list-style: none;
+      }
+      #pano li {
+      display: inline-block;
+/*      height: 1024px; */
+      height: 512px;
+      }
+    </style>
+   </head>
+  <body>
+    <div id="map_canvas">Loading...</div>
+    <ol id="pano"></ol>
+    <input id="heading" type="range" min="0" max="360" value="0" />
+    <dl id="parameter">
+      <dt>Center</dt><dd id="param_center"></dd>
+      <dt>Heading</dt><dd id="param_heading">0</dd>
+    </dl>
+  </body>
+</html>

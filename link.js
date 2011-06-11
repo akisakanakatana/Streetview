@@ -29,11 +29,11 @@ $(function() {
     var link = {};
     var stack = []; // string list
     var timer;
-    var step = 8;
+    var step = 1;
 
     var stop_walk = function () {
         clearInterval (timer);
-        step = 3;
+        step = 1;
     };
     var log_walk = function (latlng, panoid, links) {
         $.each (links, function (i,v) { stack.push (v); });
@@ -144,8 +144,6 @@ var image_address = (function(){
 /* zoom: 1 - x4
 http://cbk0.googleapis.com/cbk?output=tile&panoid=EPmej1fRGRj60ZCiQSDqvg&zoom=1&x=0&y=0&cb_client=apiv3&fover=2&onerr=3&v=4
 http://cbk1.googleapis.com/cbk?output=tile&panoid=EPmej1fRGRj60ZCiQSDqvg&zoom=1&x=1&y=0&cb_client=apiv3&fover=2&onerr=3&v=4
-http://cbk1.googleapis.com/cbk?output=tile&panoid=EPmej1fRGRj60ZCiQSDqvg&zoom=1&x=1&y=0&cb_client=apiv3&fover=2&onerr=3&v=4
-http://cbk0.googleapis.com/cbk?output=tile&panoid=EPmej1fRGRj60ZCiQSDqvg&zoom=1&x=0&y=0&cb_client=apiv3&fover=2&onerr=3&v=4
 */
 /* zoom: 2 - x8
 http://cbk1.googleapis.com/cbk?output=tile&panoid=EPmej1fRGRj60ZCiQSDqvg&zoom=2&x=0&y=0&cb_client=apiv3&fover=2&onerr=3&v=4

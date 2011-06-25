@@ -17,7 +17,8 @@ $(function() {
 
     // setting
     var around = 50; // m
-    var latlng = new google.maps.LatLng(38.26151, 140.85146);
+//    var latlng = new google.maps.LatLng(38.26151, 140.85146); // Kawauchi kita Hinshoku
+    var latlng = new google.maps.LatLng(41.766835, 140.71652); // Hakodate Akarenga souko
     var mapOptions = {
         center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -40,6 +41,17 @@ $(function() {
 
     // google map elements
     var map = new google.maps.Map($canvas.get(0), mapOptions);
+    // blue overlay
+    var street = new google.maps.ImageMapType({
+        getTileUrl: function(coord, zoom) {
+            return "http://cbk0.google.com/cbk?output=overlay&" +
+                "zoom="+zoom+"&x="+(coord.x % (1 << zoom))+"&y="+coord.y+"&cb_client=api";
+        },
+        tileSize: new google.maps.Size(256, 256),
+        isPng: true
+    });
+    map.overlayMapTypes.setAt(1, street);
+
     var sv = new google.maps.StreetViewService();
 
     // memory variables

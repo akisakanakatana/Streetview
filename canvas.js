@@ -31,16 +31,15 @@ $(function() {
 
     function load() {
       if (GBrowserIsCompatible()) {
-        // Display the map, with some controls and set the initial location 
-        map = new GMap2(document.getElementById("map"));
-        map.setCenter(new GLatLng(43.907787,-79.359741),13);
-        map.addControl(new GMapTypeControl());
-        map.addControl(new GLargeMapControl());
-
-        // == Check if the browser supports <canvas> and if so create a <canvas> inside an ELabel ==
+          // Display the map, with some controls and set the initial location 
+          map = new GMap2(document.getElementById("map"));
+          map.setCenter(new GLatLng(43.907787,-79.359741),13);
+          map.addControl(new GMapTypeControl());
+          map.addControl(new GLargeMapControl());
+          canvas = document.getElementById("carcanvas").getContext('2d');
+          // == Check if the browser supports <canvas> and if so create a <canvas> inside an ELabel ==
           label = new ELabel(map.getCenter(), '<canvas id="carcanvas" width="32" height="32"><\/canvas>',null,new GSize(-16,16));
           map.addOverlay(label);
-          canvas = document.getElementById("carcanvas").getContext('2d');
           angle = Math.PI/2;
 //          setInterval(rotatecar, 100);
       }

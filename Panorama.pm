@@ -118,19 +118,31 @@ sub makeImageURL {
 }
 
 ## Wrapped API
-sub getByLocation {
+sub jsonById {
+  @_ == 2 or die "InvalidArguments: getByLocation\n";
+  my ($self, $pid) = @_;
+  my $url = $self->makeURLById ($pid);
+  my $res = $self->request ($url);
+  return $res;
+}
+sub jsonByLocation {
   @_ == 3 or die "InvalidArguments: getByLocation\n";
   my ($self, $latlng, $radius) = @_;
   my $url = $self->makeURLByLocation ($latlng, $radius);
   my $res = $self->request ($url);
-  $res = readResponse ($res);
   return $res;
 }
 sub getById {
   @_ == 2 or die "InvalidArguments: getByLocation\n";
   my ($self, $pid) = @_;
-  my $url = $self->makeURLById ($pid);
-  my $res = $self->request ($url);
+  my $res = jsonById ($self, $pid);
+  $res = readResponse ($res);
+  return $res;
+}
+sub getByLocation {
+  @_ == 3 or die "InvalidArguments: getByLocation\n";
+  my ($self, $latlng, $radius) = @_;
+  my $res = jsonByLocation ($self, $latlng, $radius);
   $res = readResponse ($res);
   return $res;
 }
@@ -167,7 +179,7 @@ sub copy {
 sub readResponse {
   @_ == 1 or die "InvalidArguments: readResponse\n";
   my $re = shift;
-  $re =~ /({.+})/s or die "InvalidArguments: readResponse\n";
+  $re =~ /({.+})/s or die "FailedToParse: readResponse\n";
   $re = $1;
   $re = from_json($re);
   return $re;
